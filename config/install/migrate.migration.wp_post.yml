@@ -1,0 +1,29 @@
+id: wp_post
+label: WordPress Posts
+migration_group: WordPress
+source:
+  plugin: wordpress_item_source
+  urls: /tmp/wordpress.wxr
+  element_query: "/rss/channel/item[wp:post_type = 'post']"
+  id_query: 'wp:post_id'
+destination:
+  plugin: entity:node
+process:
+  type:
+    plugin: default_value
+    default_value: article
+  title: title
+  uid:
+    plugin: migration
+    migration: beer_user
+    source: aid
+  sticky:
+    plugin: default_value
+    default_value: 0
+  field_migrate_example_country: countries
+  field_migrate_example_beer_style:
+    plugin: migration
+    migration: beer_term
+    source: terms
+  'body/value': 'content:encoded'
+  'body/summary': excerpt
