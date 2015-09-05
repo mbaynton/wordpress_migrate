@@ -1,0 +1,32 @@
+id: wp_attachment
+label: WordPress Attachments
+migration_group: WordPress
+source:
+  plugin: wordpress_attachment_source
+  urls: /data/Stacy/blogs/wordpress-truncated.wxr
+  element_query: "/rss/channel/item[wp:post_type = 'attachment']"
+  id_query: 'wp:post_id'
+process:
+  filename:
+    plugin: callback
+    callable: basename
+    source: wp:attachment_url
+  uri:
+    plugin: wordpress_attachment_uri_process
+  status:
+    plugin: default_value
+    default_value: 1
+  uid:
+    plugin: default_value
+    default_value: 2
+  created:
+    plugin: callback
+    callable: strtotime
+    source: wp:post_date_gmt
+  changed:
+    plugin: callback
+    callable: strtotime
+    source: wp:post_date_gmt
+destination:
+  plugin: entity:file
+  source_path_property: wp:attachment_url
