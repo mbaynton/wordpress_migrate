@@ -1,0 +1,30 @@
+id: wp_alias
+label: WordPress URL Aliases
+migration_group: WordPress
+source:
+  plugin: wordpress_attachment_source
+  constants:
+      node_prefix: '/node/'
+  urls: /data/Stacy/blogs/wordpress-truncated.wxr
+  element_query: "/rss/channel/item[wp:post_type = 'post']"
+  id_query: 'wp:post_id'
+process:
+  source:
+    -
+      plugin: migration
+      migration: wp_post
+      source: 'wp:post_id'
+    -
+      plugin: wordpress_alias_source_process
+  alias:
+    plugin: wordpress_alias_process
+    prefix: ''
+    source: link
+  langcode:
+    plugin: default_value
+    default_value: en 
+destination:
+  plugin: url_alias
+migration_dependencies:
+  required:
+    - wp_post

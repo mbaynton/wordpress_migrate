@@ -3,7 +3,7 @@
 
 /**
  * @file
- * Contains \Drupal\migrate\Plugin\migrate\process\DefaultValue.
+ * Contains \Drupal\wordpress_migrate\Plugin\migrate\process\DefaultValue.
  */
 
 namespace Drupal\wordpress_migrate\Plugin\migrate\process;
