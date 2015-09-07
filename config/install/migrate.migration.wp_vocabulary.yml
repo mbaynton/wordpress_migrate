@@ -1,0 +1,14 @@
+id: wp_vocabulary
+label: WordPress Taxonomy Roots
+migration_group: WordPress
+source:
+  plugin: wordpress_category_source
+  urls: /data/Stacy/blogs/wordpress-truncated.wxr
+  element_query: "/rss/channel/wp:category[wp:category_parent = '']"
+  id_query: 'wp:category_nicename'
+process:
+  vid: wp:category_nicename
+  label: wp:cat_name
+  name: wp:cat_name
+destination:
+  plugin: entity:taxonomy_vocabulary

@@ -2,6 +2,7 @@
 namespace Drupal\wordpress_migrate\Plugin\migrate\source;
 
 use Drupal\migrate\Plugin\migrate\source\XmlBase;
+use Drupal\migrate\Entity\MigrationInterface;
 
 /**
  * Description of WordPressItemSource

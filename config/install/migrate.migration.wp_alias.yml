@@ -2,7 +2,7 @@ id: wp_alias
 label: WordPress URL Aliases
 migration_group: WordPress
 source:
-  plugin: wordpress_attachment_source
+  plugin: wordpress_item_source
   constants:
       node_prefix: '/node/'
   urls: /data/Stacy/blogs/wordpress-truncated.wxr
