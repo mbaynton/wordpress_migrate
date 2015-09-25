@@ -21,13 +21,17 @@ process:
     plugin: default_value
     default_value: 0
   created:
-    plugin: callback
-    callable: strtotime
+    plugin: wordpress_date_process
     source: pubDate
   changed:
-    plugin: callback
-    callable: strtotime
+    plugin: wordpress_date_process
     source: pubDate
+  status:
+    plugin: static_map
+    source: 'wp:status'
+    map:
+      publish: 1
+    default_value: 0
   'body/value': 'content:encoded'
   'body/format':
     plugin: default_value

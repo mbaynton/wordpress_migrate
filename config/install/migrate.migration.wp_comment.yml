@@ -1,0 +1,43 @@
+id: wp_comment
+label: WordPress Comments
+migration_group: WordPress
+source:
+  plugin: wordpress_comment_source
+  urls: /data/Stacy/blogs/wordpress-truncated.wxr
+  element_query: "/rss/channel/item/wp:comment"
+  id_query: 'wp:comment_id'
+  constants:
+    entity_type: node
+    comment_type: comment
+    field_name: field_comments
+destination:
+  plugin: entity:comment
+process:
+  entity_id:
+    plugin: migration
+    migration: wp_post
+    source: '..\wp:post_id'
+  pid:
+    plugin: migration
+    migration: wp_comment
+    source: 'wp:comment_parent'
+  entity_type: 'constants/entity_type'
+  comment_type: 'constants/comment_type'
+  field_name: 'constants/field_name'
+  name: 'wp:comment_author'
+  mail: wp:comment_author_email
+  homepage: wp:comment_author_url
+  hostname: wp:comment_author_IP
+  created:
+    plugin: callback
+    callable: strtotime
+    source: wp:comment_date_gmt
+  changed:
+    plugin: callback
+    callable: strtotime
+    source: wp:comment_date_gmt
+  status: wp:comment_approved
+  'comment_body/value': 'wp:comment_content'
+migration_dependencies:
+  required:
+    - wp_post
