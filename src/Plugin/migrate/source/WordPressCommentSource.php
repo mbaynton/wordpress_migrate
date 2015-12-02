@@ -1,7 +1,7 @@
 <?php
 namespace Drupal\wordpress_migrate\Plugin\migrate\source;
 
-use Drupal\migrate\Plugin\migrate\source\XmlBase;
+use Drupal\migrate_source_xml\Plugin\migrate\source\XmlBase;
 use Drupal\migrate\Entity\MigrationInterface;
 
 /**
@@ -12,7 +12,7 @@ use Drupal\migrate\Entity\MigrationInterface;
  * )
  */
 class WordPressCommentSource extends XmlBase {
-  
+
   public function fields() {
     return array(
       '..\wp:post_id' => 'Post Id comment is attached to',
@@ -28,13 +28,13 @@ class WordPressCommentSource extends XmlBase {
       'wp:comment_parent' => 'Comment parent',
     );
   }
-  
+
   public function getIds() {
     $ids['wp:comment_id']['type'] = 'integer';
     $ids['wp:comment_id']['alias'] = 'c';
     return $ids;
   }
-  
+
   public function namespaces() {
     return array(
         'wp' => 'http://wordpress.org/export/1.2/'
