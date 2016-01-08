@@ -1,8 +1,9 @@
 <?php
 namespace Drupal\wordpress_migrate\Plugin\migrate\source;
 
-use Drupal\migrate\Plugin\migrate\source\XmlBase;
+use Drupal\migrate_source_xml\Plugin\migrate\source\XmlBase;
 use Drupal\migrate\Entity\MigrationInterface;
+
 
 /**
  * Description of WordPressItemSource
@@ -15,7 +16,7 @@ class WordPressItemSource extends XmlBase {
   public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $migration);
   }
-  
+
   public function fields() {
     return array(
       'title' => 'Item title',
@@ -44,13 +45,13 @@ class WordPressItemSource extends XmlBase {
       'status' => 'Extracted from Wordpress status',
     );
   }
-  
+
   public function getIds() {
     $ids['wp:post_id']['type'] = 'integer';
     $ids['wp:post_id']['alias'] = 'n';
     return $ids;
   }
-  
+
   public function namespaces() {
     return array(
         'wp' => 'http://wordpress.org/export/1.2/'
